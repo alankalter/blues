@@ -111,6 +111,7 @@
     
     transition: all 2s linear;
     position: absolute;
+    
     /*margin:auto;*/
 }
 
@@ -274,4 +275,34 @@
     border-bottom: 32.25806451612903px solid #ffffff;
     /*left: 0px;
     top: 322.5806451612903px;*/
+}
+
+
+@font-face {
+    font-family: "doublefeature21";
+    src: url(fonts/DoubleFeature21.ttf);
+}
+
+.titles {
+    position: relative;
+    text-align:center;
+    z-index: 2;
+    font-family: doublefeature21;
+    font-size:8em;
+
+}
+
+.songname {
+    color:aliceblue;
+    position:absolute;
+    top: 0px;
+    margin:auto;
+    display: none;
+    text-align:center;
+    z-index: 100 !important;
+    font-family: ALIBI;
+    font-size:9em;
+    background-color: black;
+    height: 100%;
+    width:100%;
 }
