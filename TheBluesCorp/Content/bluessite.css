@@ -1,0 +1,277 @@
+﻿body {
+    overflow: hidden;
+    background-color: black;
+    background-image: url("img/starfield.jpg");
+}
+
+.metacard {
+    width: 300px;
+    height: 200px;
+    display: none;
+}
+
+.card {
+    width: 300px;
+    height: 200px;
+    background-color: antiquewhite;
+    font-size: large;
+    position: fixed;
+    border: 10px;
+    z-index: 10;
+    border-style: solid;
+    border-color: silver;
+    transition: all 2s linear;
+    overflow: hidden;
+}
+
+
+
+
+    .card:hover {
+        font-size: 0;
+        width: 0;
+        height: 0;
+        border-top: 50px solid transparent;
+        border-left: 200px solid white;
+        border-bottom: 50px solid transparent;
+        transition: all 0.2s linear;
+        background-color: transparent !important;
+    }
+
+
+
+
+.bgcard {
+    position: absolute;
+    background-image: url("img/starfield.jpg");
+    transition: all .1s;
+}
+
+#bgcard1 {
+    opacity: 1;
+    z-index: -3;
+}
+
+#bgcard2 {
+    opacity: 0.5;
+    z-index: -2;
+}
+
+
+
+#shifter {
+    z-index: 2;
+}
+
+#order {
+    z-index: 100;
+    position: fixed;
+}
+
+
+
+
+.metacardorder {
+    width: 300px;
+    height: 200px;
+    display: none;
+
+    z-index: 5;
+                    position: relative;
+                    display: inline-block;
+                    transform: none
+}
+
+.cardorder {
+    
+    background-color: antiquewhite;
+    font-size: large;
+    
+    border: 10px;
+    
+    border-style: solid;
+    border-color: silver;
+    transition: all 2s linear;
+    overflow: hidden;
+    
+    top: 0;
+    left: 0;
+    z-index: 5;
+    height: 90%;
+    width: 90%;
+    position: relative;
+    display: inline-block;
+    transform: none;
+}
+
+/*fountain stuff*/
+
+
+.my-floater {
+    
+    transition: all 2s linear;
+    position: absolute;
+    /*margin:auto;*/
+}
+
+.my-floater:hover {
+    transition: all 0.5s linear;
+    border-color: maroon !important;
+    opacity:0.8;
+    /*margin:auto;*/
+}
+
+#piece2 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 77.41935483870967px solid #ffffff;
+    border-top: none;
+    border-bottom-right-radius: 77.41935483870967px;
+    border-bottom-left-radius: 77.41935483870967px;
+    /*left: 141.93548387096774px;
+    top: 77.41935483870967px;*/
+}
+#piece3 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 174.19354838709677px solid #ffffff;
+    border-top: none;
+    border-bottom-right-radius: 174.19354838709677px;
+    border-bottom-left-radius: 174.19354838709677px;
+    /*left: 51.61290322580645px;
+    top: 374.19354838709677px;*/
+}
+#piece4 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 116.12903225806451px solid #ffffff;
+    border-top: none;
+    border-bottom-right-radius: 116.12903225806451px;
+    border-bottom-left-radius: 116.12903225806451px;
+    /*left: 103.2258064516129px;
+    top: 193.54838709677418px;*/
+}
+#piece5 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 64.51612903225806px solid transparent;
+    border-radius: 64.51612903225806px;
+    border-right: 64.51612903225806px solid #ffffff;
+    border-bottom: 64.51612903225806px solid #ffffff;
+    /*left: 103.2258064516129px;
+    top: 283.8709677419355px;*/
+}
+#piece6 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 64.51612903225806px solid transparent;
+    border-radius: 64.51612903225806px;
+    border-left: 64.51612903225806px solid #ffffff;
+    border-bottom: 64.51612903225806px solid #ffffff;
+    /*left: 193.54838709677418px;
+    top: 283.8709677419355px;*/
+}
+#piece7 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 45.16129032258064px solid transparent;
+    border-radius: 45.16129032258064px;
+    border-right: 45.16129032258064px solid #ffffff;
+    border-bottom: 45.16129032258064px solid #ffffff;
+    /*left: 129.03225806451613px;
+    top: 129.03225806451613px;*/
+}
+#piece8 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 45.16129032258064px solid transparent;
+    border-radius: 45.16129032258064px;
+    border-left: 45.16129032258064px solid #ffffff;
+    border-bottom: 45.16129032258064px solid #ffffff;
+    /*left: 206.4516129032258px;
+    top: 129.03225806451613px;*/
+}
+#piece9 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 32.25806451612903px solid #ffffff;
+    border-radius: 32.25806451612903px;
+    border-bottom: 32.25806451612903px solid transparent;
+    /*left: 180.64516129032256px;
+    top: 38.70967741935483px;*/
+}
+
+#piece11 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 45.16129032258064px solid transparent;
+    border-radius: 45.16129032258064px;
+    border-top: 45.16129032258064px solid #ffffff;
+    /*left: 167.74193548387095px;
+    top: 0px;*/
+}
+#piece12 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 83.87096774193547px solid transparent;
+    border-left: 83.87096774193547px solid #ffffff;
+    border-right: 83.87096774193547px solid #ffffff;
+    /*left: 141.93548387096774px;
+    top: 451.6129032258064px;*/
+}
+#piece13 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 32.25806451612903px solid transparent;
+    border-radius: 32.25806451612903px;
+    border-left: 32.25806451612903px solid #ffffff;
+    border-bottom: 32.25806451612903px solid #ffffff;
+    /*left: 387.09677419354836px;
+    top: 322.5806451612903px;*/
+}
+#piece14 {
+    /*position: absolute;
+    display: inline-block;*/
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: 32.25806451612903px solid transparent;
+    border-radius: 32.25806451612903px;
+    border-right: 32.25806451612903px solid #ffffff;
+    border-bottom: 32.25806451612903px solid #ffffff;
+    /*left: 0px;
+    top: 322.5806451612903px;*/
+}

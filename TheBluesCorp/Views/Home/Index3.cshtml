@@ -1,0 +1,273 @@
+﻿
+
+<input id="shifter" type="button" value="Play/Pause">
+<div class="orderbutton button">
+    <input id="order" type="button" value="?!*$&*^">
+
+
+</div>
+
+
+<div id="bgcard1" class="bgcard"></div>
+<div id="bgcard2" class="bgcard"></div>
+
+<div id="holder" class="row">
+    <div class="col-md-7">
+        <div class="metafloater metacard" ng-repeat="(key, value) in scattered" ng-click="swapDiv(key)">
+            <div id="card1" class="floater card">{{value.title}}</div>
+        </div>
+
+    </div>
+</div>
+
+<div id="holder" class="row">
+    <div class="col-md-7">
+        <div class="metafloater metacardorder" ng-repeat="(key, value) in ordered" >
+            <div id="card1" class="floater cardorder" ng-click="flyAway()">{{value.title}}</div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        var blues = {
+            app: {
+                module: {}
+            },
+            page: {
+                handlers: {},
+                data: {}
+            }
+
+        };
+
+        blues.page.data.isPaused = false;
+
+
+        blues.page.startup = function () {
+
+            blues.page.buttonWire();
+            blues.page.orderButtonWire();
+
+            blues.page.data.docHeight = window.innerHeight;
+            blues.page.data.docWidth = window.innerWidth;
+
+
+            $('.bgcard').css({
+
+                "height": blues.page.data.docHeight,
+                "width": blues.page.data.docWidth
+            });
+
+
+
+            setInterval(function () {
+                if (!blues.page.data.isPaused) {
+                    blues.page.divScatter();
+                }
+
+
+            }, 2000);
+
+            setInterval(function () {
+                if (!blues.page.data.isPaused) {
+
+                    blues.page.BGdivScatter();
+                }
+
+            }, 100);
+
+        };
+
+
+
+        blues.page.divScatter = function () {
+
+            $('.metacard').css("display", "inline");
+
+            var $div = $('.card');
+
+
+            var heightMax = blues.page.data.docHeight - 200;
+            var widthMax = blues.page.data.docWidth - 300;
+
+
+            //console.log(heightMax);
+            //console.log(widthMax);
+
+
+            for (var i = 0; i < $div.length; i++) {
+
+
+                $div[i].style.left = Math.floor(Math.random() * widthMax) + "px";
+                $div[i].style.top = Math.floor(Math.random() * heightMax) + "px";
+                //$div[i].style.transform = "rotate(" + Math.floor(Math.random() * 360) + "deg)";
+                $div[i].style.zIndex = Math.floor(Math.random() * 10);
+
+
+
+
+                var coin = Math.round(Math.random());
+
+                if (coin = 1) {
+
+                    $div[i].style.transform = "rotate3d(1,1,1," + Math.floor(Math.random() * 360) + "deg)";
+
+                }
+
+
+            }
+
+
+
+        };
+
+        blues.page.BGdivScatter = function () {
+            var $div = $('.bgcard');
+
+            for (var i = 0; i < $div.length; i++) {
+                $div[i].style.transform = "skew(" + Math.floor(Math.random() * 2) + "deg," + Math.floor(Math.random() * 2) + "deg)";
+
+            }
+
+        };
+
+        blues.page.buttonWire = function () {
+
+            $('#shifter').on('click', function () { blues.page.data.isPaused = !blues.page.data.isPaused; });
+
+
+        };
+
+        blues.page.orderButtonWire = function () {
+
+            $('#order').on('click', function () {
+                blues.page.data.isPaused = !blues.page.data.isPaused;
+                $(".card").css({
+
+                    "top": "0",
+                    "left": "0",
+                    "z-index": "5",
+                    "height": "90%",
+                    "width": "90%",
+                    "position": "relative",
+                    "display": "inline-block",
+                    "transform": "none"
+
+                });
+
+                $(".metacard").css({
+
+                    "z-index": "5",
+                    "position": "relative",
+                    "display": "inline-block",
+                    "transform": "none"
+
+                });
+
+                $("body").css({
+                    "overflow": "visible"
+                });
+
+                $("#order").unbind();
+                blues.page.orderButtonWireToggleState2();
+            });
+
+
+
+
+
+
+        };
+
+        blues.page.orderButtonWireToggleState2 = function () {
+
+            $('#order').on('click', function () {
+
+                $(".card").css({
+
+                    "width": "300px",
+                    "height": "200px",
+                    "background-color": "antiquewhite",
+                    "position": "fixed",
+                    "border": "10px",
+                    "z-index": "10",
+                    "border-style": "solid",
+                    "border-color": "silver",
+                    "transition": "all 2s linear",
+                    "overflow": "hidden"
+
+                });
+
+                $(".metacard").css({
+
+                    "width": "300px",
+                    "height": "200px",
+                    "display": "none"
+
+                });
+
+                $("body").css({
+                    "overflow": "hidden"
+                });
+
+                blues.page.data.isPaused = !blues.page.data.isPaused;
+
+                $("#order").unbind();
+                blues.page.orderButtonWire();
+
+            })
+        };
+
+        blues.page.divCtrl = function ($scope) {
+
+
+            $scope.loaded = false;
+
+            $scope.scattered = [{ title: 'SOMETHING', times: 'time' }, {asdf: "sadf"}];
+            $scope.ordered = [];
+
+            $scope.removeDay = function (date) {
+                date = date.substring(0, 10);
+                console.log(date);
+
+                delete $scope.data.Dates[date];
+            };
+
+            $scope.swapDiv = function (key) {
+                var temp = $scope.scattered[key];
+
+                $scope.ordered.push(temp);
+                $scope.scattered.splice(key,1);
+
+                console.log($scope.ordered);
+                console.log($scope.scattered);
+
+               // delete $scope.data.Dates[date][key];
+            };
+
+            $scope.flyAway = function () {
+                alert("yo");
+                $(this).hide();
+                
+                
+
+            };
+
+
+
+
+        };
+
+        app.controller("DivCtrl", ["$scope", blues.page.divCtrl]);
+
+
+    </script>
+};
+

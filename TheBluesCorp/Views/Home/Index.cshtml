@@ -1,0 +1,363 @@
+﻿
+
+<input id="shifter" type="button" value="Play/Pause">
+<div class="orderbutton button">
+    <input id="order" type="button" value="?!*$&*^">
+
+    
+</div>
+
+
+<div id="bgcard1" class="bgcard"></div>
+<div id="bgcard2" class="bgcard"></div>
+
+@*<div id="holder" class="row">
+    <div class="col-md-7">
+        <div class="metafloater metacard">
+            <div id="card1" class="floater card">DIV 1</div>
+        </div>
+        <div class="metafloater metacard">
+            <div id="card2" class="floater card">
+
+                <a href="http://www.google.com" target="_blank">LINK</a>
+            </div>
+        </div>
+        <div class="metafloater metacard">
+            <div id="card3" class="floater card"></div>
+        </div>
+        <div class="metafloater metacard">
+            <div id="card4" class="floater card"></div>
+        </div>
+        <div class="metafloater metacard">
+            <div id="card5" class="floater card"></div>
+        </div>
+        <div class="metafloater metacard">
+            <div id="card6" class="floater card"></div>
+        </div>
+        <div class="metafloater metacard">
+            <div id="card7" class="floater card"></div>
+        </div>
+                            </div>
+                        </div>*@
+
+<div class="my-icon">
+   
+    
+    <div id="piece2" class="my-floater" data-track="0"></div>
+    <div id="piece3" class="my-floater" data-track="1"></div>
+    <div id="piece4" class="my-floater" data-track="2"></div>
+    <div id="piece5" class="my-floater" data-track="3"></div>
+    <div id="piece6" class="my-floater" data-track="4"></div>
+    <div id="piece7" class="my-floater" data-track="5"></div>
+    <div id="piece8" class="my-floater" data-track="6"></div>
+    <div id="piece9" class="my-floater" data-track="7"></div>
+    
+    <div id="piece11" class="my-floater" data-track="8"></div>
+    <div id="piece12" class="my-floater" data-track="9"></div>
+    <div id="piece13" class="my-floater" data-track="10"></div>
+    <div id="piece14" class="my-floater" data-track="11"></div>
+</div>
+
+<object style="visibility:hidden" height="81" width="50%" id="fountain" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+    <param name="movie" value="http://player.soundcloud.com/player.swf?url=http://soundcloud.com/the-blues-7/sets/a-fountain-of-blood/&enable_api=true&object_id=fountain"></param>
+    <param name="allowscriptaccess" value="always"></param>
+    <embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http://soundcloud.com/the-blues-7/sets/a-fountain-of-blood/&enable_api=true&object_id=fountain" type="application/x-shockwave-flash" width="100%" name="fountain"></embed>
+</objects
+
+
+
+
+                        @section scripts{
+                            <script type="text/javascript">
+                                var blues = {
+                                    app: {
+                                        module: {}
+                                    },
+                                    page: {
+                                        handlers: {},
+                                        data: {}
+                                    }
+
+                                };
+
+                                blues.page.data.isPaused = false;
+
+                                
+                                blues.page.startup = function () {
+                                    soundcloud.addEventListener('onPlayerReady', function (player, data) {
+                                        console.log('player ready');
+                                        blues.page.data.player = soundcloud.getPlayer("fountain");
+                                    });
+                                    
+                                    
+
+                                    blues.page.buttonWire();
+                                    blues.page.orderButtonWire();
+
+                                    blues.page.floaterClickWire();
+
+                                    blues.page.data.docHeight = window.innerHeight;
+                                    blues.page.data.docWidth = window.innerWidth;
+
+
+                                    $('.bgcard').css({
+
+                                        "height": blues.page.data.docHeight,
+                                        "width": blues.page.data.docWidth
+                                    });
+
+                                    
+
+                                    setInterval(function () {
+                                        if (!blues.page.data.isPaused) {
+                                            blues.page.divScatter();
+                                        }
+
+
+                                    }, 2000);
+
+                                    setInterval(function () {
+                                        if (!blues.page.data.isPaused) {
+
+                                            blues.page.BGdivScatter();
+                                        }
+
+                                    }, 100);
+
+                                };
+
+                                blues.page.floaterClickWire = function () {
+
+                                    $(".my-floater").on('click', function () {
+                                        var index = $(this).attr("data-track");
+                                        blues.page.data.player.api_skip(index);
+                                        blues.page.data.player.api_play();
+                                        
+                                    })
+                                    
+                                };
+
+
+
+
+
+                                blues.page.divScatter = function () {
+
+                                    //$('.metacard').css("display", "inline");
+
+                                    var $div = $(".my-floater");
+
+                                    
+                                    var heightMax = blues.page.data.docHeight - 200;
+                                    var widthMax = blues.page.data.docWidth - 300;
+                                  
+
+                                    //console.log(heightMax);
+                                    //console.log(widthMax);
+
+                                    
+                                    for (var i = 0; i < $div.length; i++) {
+
+
+                                        $div[i].style.left = Math.floor(Math.random() * widthMax) + "px";
+                                        $div[i].style.top = Math.floor(Math.random() * heightMax) + "px";
+                                        //$div[i].style.transform = "rotate(" + Math.floor(Math.random() * 360) + "deg)";
+                                        $div[i].style.zIndex = Math.floor(Math.random() * 10);
+
+
+
+
+                                        var coin = Math.round(Math.random());
+
+                                        if (coin = 1) {
+
+                                            $div[i].style.transform = "rotate3d(1,1,1," + Math.floor(Math.random() * 360) + "deg)";
+
+                                        }
+
+                                    }
+
+                                };
+
+                                blues.page.BGdivScatter = function () {
+                                    var $div = $('.bgcard');
+
+                                    for (var i = 0; i < $div.length; i++) {
+                                        $div[i].style.transform = "skew(" + Math.floor(Math.random() * 2) + "deg," + Math.floor(Math.random() * 2) + "deg)";
+
+                                    }
+
+                                };
+
+                                blues.page.buttonWire = function () {
+
+                                    $('#shifter').on('click', function () { blues.page.data.isPaused = !blues.page.data.isPaused; });
+
+                                };
+
+                                blues.page.orderButtonWire = function () {
+
+                                    blues.page.orderButtonWireToggleState2();
+                                    $(".my-floater").css({"transform": "none"});
+
+                                    $("#piece1").css({
+                                        "left": blues.page.data.docWidth/3 + 51.61290322580645 + "px",
+                                        "top": "0px"});
+                                    $("#piece2").css({"left": blues.page.data.docWidth/3 + 141.93548387096774 + "px",
+                                    "top": "77.41935483870967px"});
+
+                                    $("#piece3").css({"left": blues.page.data.docWidth/3 + 51.61290322580645 +"px","top": "374.19354838709677px"});
+
+                                    $("#piece4").css({"left": blues.page.data.docWidth/3 + 103.2258064516129+ "px",
+                                top: "193.54838709677418px"});
+
+                                    $("#piece5").css({"left": blues.page.data.docWidth/3 + 103.2258064516129+"px",
+                                "top": "283.8709677419355px"});
+
+                                    $("#piece6").css({"left": blues.page.data.docWidth/3 + 193.54838709677418 + "px",
+                                "top": "283.8709677419355px"});
+
+                                    $("#piece7").css({"left": blues.page.data.docWidth/3 + 129.03225806451613 +"px",
+                                "top": "129.03225806451613px"});
+
+                                    $("#piece8").css({"left": blues.page.data.docWidth/3 + 206.4516129032258 + "px",
+                                "top": "129.03225806451613px"});
+
+                                    $("#piece9").css({"left": blues.page.data.docWidth/3 + 180.64516129032256 +"px",
+                                "top": "38.70967741935483px"});
+
+                                    $("#piece11").css({"left": blues.page.data.docWidth/3 + 167.74193548387095 + "px",
+                                "top": "0px"});
+
+                                    $("#piece12").css({"left": blues.page.data.docWidth/3 + 141.93548387096774 +"px",
+                                "top": "451.6129032258064px"});
+
+                                    $("#piece13").css({"left": blues.page.data.docWidth/3 + 387.09677419354836 +"px",
+                                "top": "322.5806451612903px"});
+
+                                    $("#piece14").css({"left": blues.page.data.docWidth/3 + 0 + "px",
+                                "top": "322.5806451612903px"});
+
+
+
+
+
+
+
+
+
+
+                                    //$('#order').on('click', function () {
+                                    //    blues.page.data.isPaused = !blues.page.data.isPaused;
+                                    //    $(".card").css({
+
+                                    //        "top": "0",
+                                    //    "left": "0",
+                                    //    "z-index": "5",
+                                    //    "height": "90%",
+                                    //    "width": "90%",
+                                    //    "position": "relative",
+                                    //    "display": "inline-block",
+                                    //    "transform": "none"
+
+                                    //    });
+
+                                    //    $(".metacard").css({
+
+                                    //        "z-index": "5",
+                                    //    "position": "relative",
+                                    //    "display": "inline-block",
+                                    //    "transform": "none"
+
+                                    //    });
+
+                                    //    $("body").css({
+                                    //        "overflow": "visible"
+                                    //    });
+                                        
+                                    //    $("#order").unbind();
+                                    //    blues.page.orderButtonWireToggleState2();
+                                    //});
+                                };
+
+                                blues.page.orderButtonWireToggleState2 = function () {
+
+                                    $('#order').on('click', function () {
+                                        
+                                        $(".card").css({
+
+                                            "width": "300px",
+                                            "height": "200px",
+                                            "background-color": "antiquewhite",
+                                            "position": "fixed",
+                                            "border": "10px",
+                                            "z-index": "10",
+                                            "border-style": "solid",
+                                            "border-color": "silver",
+                                            "transition" : "all 2s linear",
+                                            "overflow": "hidden"
+
+                                        });
+
+                                        $(".metacard").css({
+
+                                            "width": "300px",
+                                            "height": "200px",
+                                            "display": "none"
+
+                                        });
+
+                                        $("body").css({
+                                            "overflow": "hidden"
+                                        });
+
+                                        blues.page.data.isPaused = !blues.page.data.isPaused;
+
+                                        $("#order").unbind();
+                                        blues.page.orderButtonWire();
+
+                                    })
+                                };
+
+
+                                blues.page.divFlyAway = function () {
+
+                                    $('.card').on('click', function () {
+
+                                        $(this).css({
+
+                                            "width": "300px",
+                                            "height": "200px",
+                                            "background-color": "antiquewhite",
+                                            "position": "fixed",
+                                            "border": "10px",
+                                            "z-index": "10",
+                                            "border-style": "solid",
+                                            "border-color": "silver",
+                                            "transition": "all 2s linear",
+                                            "overflow": "hidden"
+
+                                        });
+
+                                        $(this).parent().css({
+
+                                            "width": "300px",
+                                            "height": "200px",
+                                            "display": "none"
+
+                                        });
+
+                                        
+
+                                        blues.page.data.isPaused = !blues.page.data.isPaused;
+
+                                        $("#order").unbind();
+                                        blues.page.orderButtonWire();
+
+                                    })
+                                };
+
+
+                            </script>
+                        };
+
